@@ -39,6 +39,7 @@ def platform_detect():
     # TODO: Check the Beaglebone Black /proc/cpuinfo value instead of reading
     # the platform.
     plat = platform.platform()
+    print 'Platform_detect: {}' .format(plat)
     if plat.lower().find('armv7l-with-debian') > -1:
         return BEAGLEBONE_BLACK
     elif plat.lower().find('armv7l-with-ubuntu') > -1:
@@ -101,6 +102,10 @@ def pi_version():
     elif match.group(1) == 'BCM2709':
         # Pi 2
         return 2
+    elif match.group(1) == 'ODROIDC':
+        # Odroid C1
+        return 5
     else:
+        print 'pi_version: {}' .format(match.group(1))
         # Something else, not a pi.
         return None
